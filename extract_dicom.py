@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon May  7 11:05:46 2018
+Created on Tue May  8 19:43:30 2018
 
 @author: duilio
 """
-
+#extract_dicom.py
 import numpy as np
 import pydicom
-import dicom
+#import dicom
 import os
  
 def load_dicoms(directory):
@@ -60,13 +60,32 @@ def extract_images(directory):
         print('No cache')
         return load_dicoms(directory)
  
-    
+#    #------PRUEBA DE EXTRAER
+#def extract_images(filename):
+#  """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
+#  print('Extracting', filename)
+#  with gzip.open(filename) as bytestream:
+#    magic = _read32(bytestream)
+#    if magic != 2051:
+#      raise ValueError(
+#          'Invalid magic number %d in MNIST image file: %s' %
+#          (magic, filename))
+#    num_images = _read32(bytestream)
+#    rows = _read32(bytestream)
+#    cols = _read32(bytestream)
+#    buf = bytestream.read(rows * cols * num_images)
+#    data = numpy.frombuffer(buf, dtype=numpy.uint8)
+#    data = data.reshape(num_images, rows, cols, 1)
+#    return data
+#    
+    ##PRUEBA2 DE EXTRAER
 def extract_dataset(folder, bounds = .2):
  
     dirs = os.listdir(folder)
     dirs = [ label for label in dirs if label[0] != '.' ]
     dirs.sort()
- 
+#    dirs = [ name for name in os.listdir(folder) if name.find(".dcm") > 0 ]
+#    dirs.sort()
     # print labels
     print(dirs)
 
@@ -80,12 +99,13 @@ def extract_dataset(folder, bounds = .2):
     for label in dirs:
  
         subdir = os.path.join(folder, label)
+#        subdirs = [ name for name in os.listdir(folder) if name.find(".dcm") > 0 ]
         subdirs = [ label for label in os.listdir(subdir) if label[0] != '.' ]
- 
+        print('dirs1')
         subdir_index = 0
        
         for container in subdirs:
- 
+            print(bounds * len(subdirs))#esto me 0.4
             data = extract_images(os.path.join(subdir, container))
  
             if subdir_index > bounds * len(subdirs):
@@ -93,7 +113,7 @@ def extract_dataset(folder, bounds = .2):
  
                 for img in data:
                     new_train.append(img)
- 
+                print('aca estoy')
                 data_train.append(new_train)
                 label_train.append(index)
             else:
@@ -101,7 +121,7 @@ def extract_dataset(folder, bounds = .2):
  
                 for img in data:
                     new_test.append(img)
- 
+                print('aca no estoy')
                 data_test.append(new_test)
                 label_test.append(index)
  
@@ -109,47 +129,10 @@ def extract_dataset(folder, bounds = .2):
  
         index += 1
  
-    data_train = np.array(data_train)
-    data_test = np.array(data_test)
-    label_train = np.array(label_train)
-    label_test = np.array(label_test)
- 
-    return (data_train, label_train), ( data_test, label_test )
- 
-    
-# dicom_cnn.py
-#from __future__ import print_function
-import numpy as np
-np.random.seed(1337)  # for reproducibility
- 
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Convolution2D, Convolution3D, MaxPooling2D, MaxPooling3D
-from keras.utils import np_utils
-from keras import backend as K
+    data_train = np.array(data_train)#este me da bien
+    data_test = np.array(data_test)#este me da mal
+    label_train = np.array(label_train)#este me da bien
+    label_test = np.array(label_test)#este me da mal
 
-import extract_dicom as ext
- 
-batch_size = 2
-nb_classes = 2
-nb_epoch = 3
- 
-folder="/home/duilio/Escritorio/EGGS_DIANA"
-# number of convolutional filters to use
-nb_filters = 32
-# size of pooling area for max pooling
-pool_size = (2, 2)
-# convolution kernel size
-kernel_size = (3, 3)
-#(X_train, y_train), (X_test, y_test) = extract_dataset(folder)
-# the data, shuffled and split between train and test sets
-(X_train, y_train), (X_test, y_test) = ext.extract_dataset(folder)
-#print('X_train shape:', X_train.shape)
-#print('X_test shape:', X_test.shape)
-#print(X_train.shape[0], 'train samples')
-#print(X_test.shape[0], 'test samples')
- 
-# Convert class vectors to binary class matrices.
-#Y_train = np_utils.to_categorical(y_train, nb_classes)
-#Y_test = np_utils.to_categorical(y_test, nb_classes)
+    return (data_train, label_train), ( data_test, label_test )
+# (X_train, y_train), (X_test, y_test) = extract_dataset(folder)
