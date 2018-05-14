@@ -135,4 +135,6 @@ def extract_dataset(folder, bounds = .2):
     label_test = np.array(label_test)#este me da mal
 
     return (data_train, label_train), ( data_test, label_test )
-# (X_train, y_train), (X_test, y_test) = extract_dataset(folder)
+
+folder="/home/duilio/Escritorio/EGGS_DIANA/datas"
+(X_train, y_train), (X_test, y_test) = extract_dataset(folder)

@@ -79,7 +79,7 @@ class Imagen:
             plt.show()
         
         
-#x = Imagen()
+x = Imagen()
 #data=Imagen.load_dicoms("./EGGS_DIANA/")
 #datainf=Imagen.info_dicom("./EGGS_DIANA/",4)
-#datainf=Imagen.plot_imagenes("./EGGS_DIANA/")
+datainf=Imagen.plot_imagenes("./EGGS_DIANA/")
