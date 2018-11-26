@@ -1,0 +1,4 @@
+*.hdf5
+*.json
+/README.md
+/LICENSE
