@@ -1,14 +1,11 @@
-# It is a readme
+# Semantic Segmentation for MRI Lower Limb
 
-## Tit
 ***
 
-**Hello**
 
+In this project the goal is processing images from MRI for get a Skeletal muscle segmentation  
 
-![alt tag](https://github.com/duiliod/Tesis/Imagen4.jpg)
-
-
+below we can view a image raw of MRI from hip
 <p align="center">
   <img src="https://github.com/duiliod/Tesis/blob/master/Imagen4.jpg" width="50%" >
 </p>
