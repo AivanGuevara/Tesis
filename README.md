@@ -18,5 +18,5 @@ Example results for the pre-trained models provided :
 
 Input Image            |  Output Segmentation Image
 :-------------------------:|:-------------------------:
-![](https://github.com/duiliod/Tesis/Imagen182.bmp)  |  ![](https://github.com/duiliod/Tesis/Imagen182_Seg.bmp)
-![](https://github.com/duiliod/Tesis/Imagen334.bmp)  |  ![](https://github.com/duiliod/Tesis/Imagen334_Seg.bmp)
+![](https://github.com/duiliod/Tesis/blob/master/Imagen182.bmp)  |  ![](https://github.com/duiliod/Tesis/blob/master/Imagen182_Seg.bmp)
+![](https://github.com/duiliod/Tesis/blob/master/Imagen334.bmp)  |  ![](https://github.com/duiliod/Tesis/blob/master/Imagen334_Seg.bmp)
